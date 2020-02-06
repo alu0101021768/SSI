@@ -9,5 +9,3 @@ _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios
 
 * **Néstor Torres Díaz** - *Full proyecto* - [alu0101021768](https://github.com/alu0101021768)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto.
-
