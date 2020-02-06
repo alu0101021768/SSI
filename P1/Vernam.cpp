@@ -28,7 +28,7 @@ int main()
         else
             result += '1';
     }
-    cout << "Mensaje original ya cifrado   : " << result << endl;
+    cout << "Mensaje cifrado en binario : " << result << endl;
     istringstream in(result);
     bitset<8> fin;
     result.clear();
@@ -36,7 +36,7 @@ int main()
     {
         result += char(fin.to_ulong());
     }
-    cout << "Mensaje cifrado descifrado    : " << result << endl;
+    cout << "Mensaje cifrado : " << result << endl;
     string aux = result;
     mensaje_bin.clear();
     for (int i = 0; i < result.size(); ++i)
