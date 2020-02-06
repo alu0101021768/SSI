@@ -5,7 +5,5 @@
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Néstor Torres Díaz** - *Full proyecto* - [alu0101021768](https://github.com/alu0101021768)
+* **Néstor Torres Díaz** - *Full proyecto* - [alu0101021768@ull.edu.es](https://github.com/alu0101021768)
 
