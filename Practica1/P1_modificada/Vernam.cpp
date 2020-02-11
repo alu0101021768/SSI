@@ -44,7 +44,7 @@ string randomizer(int n) {
 string to_ascii(string mensaje) {
     for (int i = 0; i < mensaje.size(); i++) {
         if (mensaje[i] < 32 || mensaje[i] > 126) {
-            mensaje[i] %= 94 ;
+            mensaje[i] %= (126-32) ;
             mensaje[i] += 32;
         }
     }
@@ -62,6 +62,15 @@ string bin_to_alpha(string mensaje_cifrado) {
     }
 
     return to_ascii(result);
+}
+
+void mostrar_crema(string cadena) {
+    for (int i = 0; i < cadena.size(); i++)
+    {
+        /* code */
+        cout << char(cadena[i]);
+    }
+    
 }
 
 int main()
@@ -102,6 +111,9 @@ int main()
     // Se pasa el mensaje cifrado en binario a ascii
     result = bin_to_alpha(aux); 
     cout << "Mensaje cifrado : " << result << endl;
+    for (int i = 0; i < result.size(); i++) {
+        cout << "Carácter : " << result[i] << "| Valor entero : " << int(result[i]) << endl; 
+    }
     
     // Se vuelve a pasar a binario el mensaje cifrado
     //string cifrado = to_bin(result);
