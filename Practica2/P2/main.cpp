@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 
+
 // Definimos el alfabeto sin Ñ y con W
 const std::string alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVXYZ";
 
@@ -51,7 +52,13 @@ std::string add_key_cifrado(std::string mensaje , std::string clave)
         if (cont == tam_clave)
             cont = 0;
     }
+<<<<<<< HEAD
     for (int i = 0; i < tam_msg; i++) {
+=======
+    
+    for (int i = 0; i < tam_msg; i++) 
+    {
+>>>>>>> 89a92e0c6deb5d1df99e49fca730689a8c739dd7
         resultado[i] = alfabeto[(find_value(mensaje[i]) + find_value(clave[i])) % modulo];
     }
     return resultado;
@@ -73,6 +80,7 @@ std::string subtraction_key_descifrado(std::string mensaje, std::string clave)
         if (cont == tam_clave)
             cont = 0;
     }
+
     for (int i = 0; i < tam_msg; i++)
     {
         resultado[i] = alfabeto[((find_value(mensaje[i]) - find_value(clave[i])) + modulo) % modulo];
@@ -82,19 +90,22 @@ std::string subtraction_key_descifrado(std::string mensaje, std::string clave)
 
 
 // Borra los espacios
-void delete_spaces(std::string& mensaje) {
+void delete_spaces(std::string& mensaje) 
+{
     mensaje.erase(remove_if(mensaje.begin(), mensaje.end(), isspace), mensaje.end());
     std::cout << "Mensaje sin espacios : " << mensaje << std::endl;
 }
 
 // llama a la función add key para cifrar
-void cifrado(std::string& resultado , std::string mensaje , std::string clave) {
+void cifrado(std::string& resultado , std::string mensaje , std::string clave) 
+{
     resultado = add_key_cifrado(mensaje, clave);
     std::cout << "Mensaje cifrado : " << resultado << std::endl;
 }
 
 // llama a la función SUBSTRACT key para descifrar
-void descifrado(std::string& resultado , std::string mensaje , std::string clave) {
+void descifrado(std::string& resultado , std::string mensaje , std::string clave) 
+{
     resultado = subtraction_key_descifrado(mensaje, clave);
     std::cout << "Mensaje descifrado : " << resultado << std::endl;
 }
