@@ -5,7 +5,7 @@
 #include <algorithm>
 
 // Definimos el alfabeto sin Ñ y con W
-const std::string alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const std::string alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVXYZ";
 
 // Definimos el modulo
 const int modulo = 26;
@@ -15,7 +15,8 @@ int find_value(char caracter)
 {
     int val = alfabeto.find(caracter);
     if (val == std::string::npos) {
-        std::cout << "Carácter " << caracter << " no encontrado" << std::endl;   
+        std::cout << "Carácter " << caracter << " no encontrado" << std::endl; 
+        // return -1;  
     }
     return val;
 }
@@ -33,7 +34,6 @@ void read_clave(std::string& clave)
 {
     std::cout << "Introduzca la clave : ";
     std::cin >> clave;
-   
 }
 
 // Suma el mensaje con la clave 
@@ -52,7 +52,7 @@ std::string add_key_cifrado(std::string mensaje , std::string clave)
             cont = 0;
     }
     for (int i = 0; i < tam_msg; i++) {
-        resultado[i] = alfabeto[(find_value(mensaje[i]) + find_value(clave[i])) % 26];
+        resultado[i] = alfabeto[(find_value(mensaje[i]) + find_value(clave[i])) % modulo];
     }
     return resultado;
 }
@@ -75,7 +75,7 @@ std::string subtraction_key_descifrado(std::string mensaje, std::string clave)
     }
     for (int i = 0; i < tam_msg; i++)
     {
-        resultado[i] = alfabeto[((find_value(mensaje[i]) - find_value(clave[i])) + 26) % 26];
+        resultado[i] = alfabeto[((find_value(mensaje[i]) - find_value(clave[i])) + modulo) % modulo];
     }
     return resultado;
 }
