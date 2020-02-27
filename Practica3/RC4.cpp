@@ -40,5 +40,8 @@ void RC4::swap(const int i, const int j) {
 }
 
 int RC4::PRGA() {
-    
+    i_inx = (i_inx + 1) % 256;
+    j_inx = (j_inx + S[i_inx]) % 256;
+    swap(i_inx , j_inx);
+    return (S[i_inx] + S[j_inx]) % 256;
 }
