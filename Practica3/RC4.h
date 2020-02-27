@@ -22,7 +22,6 @@ public:
     int PRGA();                                     // Generación de secuencia cifrante
     vector<int> Cifrado(vector<int> mensaje);       // Cifrado
     vector<int> Descifrado(vector<int>mensaje);     // Descifrado
-
     void swap(const int index_s, const int index_k); // Swap
 };
 

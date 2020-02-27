@@ -45,3 +45,11 @@ int RC4::PRGA() {
     swap(i_inx , j_inx);
     return (S[i_inx] + S[j_inx]) % 256;
 }
+
+vector<int> Cifrado(vector<int> mensaje) {
+    
+}
+
+vector<int> Descifrado(vector<int> mensaje) {
+
+}
