@@ -1,16 +1,6 @@
 #include "RC4.h"
 
-ostream& write(ostream& os , const vector<int>& v) {
-	os << endl;
-	os << "[ ";
-	for (int i = 0; i < v.size(); i++) {
-		if (i != v.size() - 1) 
-			os << v[i] << " , ";
-		else 
-			os << v[i] << " ]" << endl; 
-	}
-	os << endl;
-}
+
 
 int main() {
 
@@ -37,8 +27,10 @@ int main() {
 		mensaje.push_back(m);
 	}
 
-	write(cout , semilla);
-	write(cout , mensaje);
+	// Ahora queda cifrar el mensaje
+	RC4 objeto(semilla);
+	//write(cout , semilla);
+	//write(cout , mensaje);
 	return 0;
 
 }

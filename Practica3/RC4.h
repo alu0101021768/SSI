@@ -23,9 +23,20 @@ public:
     vector<int> Cifrado(vector<int> mensaje);       // Cifrado
     vector<int> Descifrado(vector<int>mensaje);     // Descifrado
     void swap(const int index_s, const int index_k); // Swap
+
 };
 
-
-// El constructor parametrizado llamada al método KSA , para inicializar los vectores S y K
-
-// A su vez KSA llama a el método Swap
+// Write para escribir vectores de enteros
+ostream& write(ostream &os, const vector<int> &v)
+{
+    os << endl;
+    os << "[ ";
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (i != v.size() - 1)
+            os << v[i] << " , ";
+        else
+            os << v[i] << " ]" << endl;
+    }
+    os << endl;
+}

@@ -46,10 +46,15 @@ int RC4::PRGA() {
     return (S[i_inx] + S[j_inx]) % 256;
 }
 
-vector<int> Cifrado(vector<int> mensaje) {
+vector<int> RC4::Cifrado(vector<int> mensaje) {
     
+    vector<int> s(mensaje.size());
+    for (int i = 0; i < mensaje.size(); i++) {
+        s[i] = PRGA() + mensaje[i];
+    }
+    return s;
 }
 
-vector<int> Descifrado(vector<int> mensaje) {
+vector<int> RC4::Descifrado(vector<int> mensaje) {
 
 }
