@@ -12,31 +12,19 @@ private:
     vector<int> S;                                  // Vector de estado S : contiene una permutación de todos los números enteros del 0 a 255
     vector<int> K;                                  // Vector de clave K
     int i_inx, j_inx;                               // Indices
+    vector<int> secuencia_cifrante;                 // Secuencia cifrante
 public:
 
-    RC4();                                          // Constructor por defecto
-    RC4(vector<int> semilla_clave);                 // Constructor parametrizado
+    RC4();                                          // ructor por defecto
+    RC4(vector<int> semilla_clave);                 // ructor parametrizado
     ~RC4();                                         // Destructor
 
-    void KSA(vector<int> semilla_clave);            // Inicializacion ( Key Scheduling Algorithm )
+    void KSA(vector<int>& semilla_clave);            // Inicializacion ( Key Scheduling Algorithm )
     int PRGA();                                     // Generación de secuencia cifrante
     vector<int> Cifrado(vector<int> mensaje);       // Cifrado
-    vector<int> Descifrado(vector<int>mensaje);     // Descifrado
-    void swap(const int index_s, const int index_k); // Swap
-
+    vector<int> Descifrado(vector<int> mensaje);     // Descifrado
+    void swap( int index_s,  int index_k); // Swap
+    inline vector<int> get_secuencia() { return secuencia_cifrante; };
 };
 
-// Write para escribir vectores de enteros
-ostream& write(ostream &os, const vector<int> &v)
-{
-    os << endl;
-    os << "[ ";
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (i != v.size() - 1)
-            os << v[i] << " , ";
-        else
-            os << v[i] << " ]" << endl;
-    }
-    os << endl;
-}
+

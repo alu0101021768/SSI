@@ -1,23 +1,14 @@
 #include "RC4.h"
 
-RC4::RC4(vector<int> semilla_clave) {
-    S.resize(0);
-    K.resize(0);
-    i_inx = 0;
-    j_inx = 0;
-}
+RC4::RC4() : S(0), K(0), i_inx(0), j_inx(0) {}
 
-RC4::RC4(vector<int> semilla_clave) {
-    S.resize(256);
-    K.resize(256);
-    i_inx = 0;
-    j_inx = 0;
+RC4::RC4(vector<int> semilla_clave) : S(256) , K(256) , i_inx(0) , j_inx(0) {
     KSA(semilla_clave);
 }
 
 RC4::~RC4() {}
 
-void RC4::KSA(vector<int> semilla_clave) {
+void RC4::KSA(vector<int>& semilla_clave) {
    
     for (int i = 0; i < 256; i++) {
         S[i] = i;
@@ -32,7 +23,7 @@ void RC4::KSA(vector<int> semilla_clave) {
     }
 }
 
-void RC4::swap(const int i, const int j) {
+void RC4::swap( int i,  int j) {
    
     int aux = S[i];
     S[i] = S[j];
@@ -40,17 +31,24 @@ void RC4::swap(const int i, const int j) {
 }
 
 int RC4::PRGA() {
+    
     i_inx = (i_inx + 1) % 256;
     j_inx = (j_inx + S[i_inx]) % 256;
     swap(i_inx , j_inx);
-    return (S[i_inx] + S[j_inx]) % 256;
+    int resultado = (S[i_inx] + S[j_inx]) % 256;
+    return S[resultado];
 }
 
-vector<int> RC4::Cifrado(vector<int> mensaje) {
+ vector<int> RC4::Cifrado(vector<int> mensaje) {
     
     vector<int> s(mensaje.size());
+    secuencia_cifrante.resize(mensaje.size());
+    int byte;
+
     for (int i = 0; i < mensaje.size(); i++) {
-        s[i] = PRGA() + mensaje[i];
+        byte = PRGA();
+        secuencia_cifrante[i] = byte;
+        s[i] = mensaje[i] ^ byte;
     }
     return s;
 }
