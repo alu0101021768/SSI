@@ -1,5 +1,9 @@
 #include "RC4.h"
 
+const std::string red("\033[0;31m");
+const std::string green("\033[1;32m");
+const std::string reset("\033[0m");
+
 // Write para escribir vectores de enteros
 ostream& write(ostream &os, vector<int> v)
 {
@@ -19,13 +23,13 @@ int main() {
 	// Recogemos la semilla
 	vector<int> semilla;
 	int tam_s , s;
-	cout << "===========================================" << endl;
+	cout << red << "===========================================" << reset << endl;
 	cout << "Introduzca tamaño de la semilla: ";
 	cin >> tam_s; 
 	semilla.resize(tam_s);
-	cout << "Introduzca la semilla" << endl;
+	cout << green << "Introduzca la semilla" << endl;
 	for (int i = 0; i < semilla.size(); i++) {
-		cout << "\t-> Semilla[" << i << "] = ";
+		cout << green << "-> Semilla[" << i << "] = ";
 		cin >> s;
 		semilla[i] = s;
 	}
@@ -33,24 +37,27 @@ int main() {
 	// Igual para el mensaje
 	vector<int> mensaje;
 	int tam_m , m;
-	cout << "===========================================" << endl;
-	cout << "Introduzca el tamaño del mensaje: ";
+	cout << red << "===========================================" << reset << endl;
+	cout << reset <<  "Introduzca el tamaño del mensaje: ";
 	cin >> tam_m;
 	mensaje.resize(tam_m);
-	cout << "Introduzca el mensaje" << endl;
+	cout << green << "Introduzca el mensaje" << endl;
 	for (int i = 0; i < mensaje.size(); i++)
 	{
-		cout << "\t-> Mensaje[" << i << "] = ";
+		cout << green <<  "-> Mensaje[" << i << "] = ";
 		cin >> m;
 		mensaje[i] = m;
 	}
-	cout << "===========================================" << endl;
+	cout << reset << red << "===========================================" << reset << endl;
+
 	// Ahora queda cifrar el mensaje
 	RC4 objeto(semilla);
 
 	vector<int> mensaje_cifrado = objeto.Cifrado(mensaje);
+	vector<int> mensaje_descifrado = objeto.Descifrado(mensaje_cifrado);
 
-	cout << "-> Semilla: ";
+	// Mostramos los datos recogidos , la secuencia cifrante generada asi como el mensaje cifrado
+	cout << green <<  "-> Semilla: ";
 	write(cout, semilla);
 
 	cout << "-> Mensaje : ";
@@ -61,6 +68,9 @@ int main() {
 
 	cout << "-> Mensaje cifrado: ";
 	write(cout, mensaje_cifrado);
-	cout << "===========================================" << endl;
+
+	cout << "-> Mensaje descifrado: ";
+	write(cout, mensaje_descifrado);
+	cout << reset << red << "===========================================" << reset << endl;
 	return 0;
 }
