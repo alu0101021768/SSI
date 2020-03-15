@@ -58,7 +58,16 @@ vector<int> suma2bits(vector<int> a, vector<int> b) {
     return r;
 }
 
-// Generador de bits de secuencia cifrante
+// Generador de bits de secuencia cifrante , XOR entre salida de los LFSR
 int generarSecuenciaCifrante(int x1, int x2, int x3, int x4, int c0) {
     return (x1 ^ x2 ^ x3 ^ x4 ^ c0);
 }
+
+// Suma normal de las salidas de los LFSR , genera un entero del 0-4
+int sumaSalidasLFSR(int x1, int x2, int x3, int x4)
+{
+    return (x1 + x2 + x3 + x4);
+}
+
+// Suma entre el resultado de "sumaSalidasLFSR" + lo que viene de R1 ,  genera un entero del 0-7
+int sumaR1masSalidaLFSR()
