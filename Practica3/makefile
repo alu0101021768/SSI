@@ -1,4 +1,4 @@
-main:
-	g++ -g RC4.cpp main.cpp -o rc4
-clean: 
-	rm rc4 
+all: 
+	g++ -o rc4 RC4.cpp main.cpp
+clean:
+	rm rc4
