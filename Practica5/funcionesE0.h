@@ -5,6 +5,19 @@
 
 using namespace std;
 
+// Write para vectores
+ostream& write(ostream &os, vector<int> v)
+{
+    os << "[ ";
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (i != v.size() - 1)
+            os << v[i] << " , ";
+        else
+            os << v[i] << " ]" << endl;
+    }
+    return os;
+}
 // Devuelve el último elemento de un vector
 int getLast(vector<int> v) 
 { 
@@ -12,49 +25,50 @@ int getLast(vector<int> v)
 }
 
 // Funciones shift haciendo uso de los polinomios de realimentación 
-void shiftLFSR1(vector<int> v) 
+void shiftLFSR1(vector<int>& v) 
 {
-    int retroalimentacion = v[7] ^ v[11] ^ v[19] ^ v[24];
-    for (int i = v.size() - 1; i > 0; i++) 
+    int retroalimentacion = (v[7] ^ v[11] ^ v[19] ^ v[24]);
+    for (int i = v.size() - 1; i > 0; i--) 
     {
         v[i] = v[i - 1];
     }
     v[0] = retroalimentacion;
 }
-
-void shiftLFSR2(vector<int> v) 
+void shiftLFSR2(vector<int>& v) 
 {
-    int retroalimentacion = v[11] ^ v[15] ^ v[23] ^ v[30];
-    for (int i = v.size() - 1; i > 0; i++)
+    int retroalimentacion = (v[11] ^ v[15] ^ v[23] ^ v[30]);
+    for (int i = v.size() - 1; i > 0; i--)
     {
         v[i] = v[i - 1];
     }
     v[0] = retroalimentacion;
 }
-
-void shiftLFSR3(vector<int> v) 
+void shiftLFSR3(vector<int>& v) 
 {
-    int retroalimentacion = v[3] ^ v[23] ^ v[27] ^ v[32];
-    for (int i = v.size() - 1; i > 0; i++)
+    int retroalimentacion = (v[3] ^ v[23] ^ v[27] ^ v[32]);
+    for (int i = v.size() - 1; i > 0; i--)
     {
         v[i] = v[i - 1];
     }
     v[0] = retroalimentacion;
 }
-
-void shiftLFSR4(vector<int> v) 
+void shiftLFSR4(vector<int>& v) 
 {
-    int retroalimentacion = v[3] ^ v[27] ^ v[35] ^ v[38];
-    for (int i = v.size() - 1; i > 0; i++)
+    int retroalimentacion = (v[3] ^ v[27] ^ v[35] ^ v[38]);
+    for (int i = v.size() - 1; i > 0; i--)
     {
         v[i] = v[i - 1];
     }
     v[0] = retroalimentacion;
 }
-// Funciones T : 
-//T1 ( C1#t , C0#t) = (C1#t , C0#t)  
-//T2 (C1#t+1 , C0#t+1) = (C0#t+1, C1#t+1 ^ C0#t+1)
-
+// Funcion T2
+vector<int> fillT2(vector<int> R2) 
+{
+    vector<int> resultado(R2.size());
+    resultado[0] = R2[1];
+    resultado[1] = R2[0] ^ R2[1];
+    return resultado;
+}
 
 // Funciones suma de 2 bits : pos 0 con pos 0 y pos 1 con pos 1
 vector<int> suma2bits(vector<int> a, vector<int> b) {
@@ -85,13 +99,11 @@ int sumaR1masSalidaLFSR(int x, int y)
 vector<int> divToBinary(int x) 
 {
     vector<int> binaryNumber(2);
-    int i = 0;
-    while (x > 0)
-    {
-        binaryNumber[i] = x % 2;
-        x = x / 2;
-        i++;
-    }
+    x = x/2;
+    bitset<2> numeroBinario(x);
+    binaryNumber[0] = numeroBinario[1];
+    binaryNumber[1] = numeroBinario[0];
+
     return binaryNumber;
 }
 
