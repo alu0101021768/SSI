@@ -6,7 +6,7 @@
 
 
 // Definimos el alfabeto sin Ñ y con W
-const std::string alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVXYZ";
+const std::string alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Definimos el modulo
 const int modulo = 26;
@@ -52,13 +52,11 @@ std::string add_key_cifrado(std::string mensaje , std::string clave)
         if (cont == tam_clave)
             cont = 0;
     }
-<<<<<<< HEAD
-    for (int i = 0; i < tam_msg; i++) {
-=======
+
     
     for (int i = 0; i < tam_msg; i++) 
     {
->>>>>>> 89a92e0c6deb5d1df99e49fca730689a8c739dd7
+
         resultado[i] = alfabeto[(find_value(mensaje[i]) + find_value(clave[i])) % modulo];
     }
     return resultado;

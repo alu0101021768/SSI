@@ -1,4 +1,4 @@
 all:
-	g++ -g -o cifradoE0 funcionesE0.cpp main.cpp
+	g++ -g -o cifradoE0 main.cpp
 clean:
 	rm cifradoE0

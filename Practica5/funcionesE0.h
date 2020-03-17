@@ -5,6 +5,12 @@
 
 using namespace std;
 
+// Devuelve el último elemento de un vector
+int getLast(vector<int> v) 
+{ 
+    return v[v.size()-1]; 
+}
+
 // Funciones shift haciendo uso de los polinomios de realimentación 
 void shiftLFSR1(vector<int> v) 
 {
@@ -70,4 +76,43 @@ int sumaSalidasLFSR(int x1, int x2, int x3, int x4)
 }
 
 // Suma entre el resultado de "sumaSalidasLFSR" + lo que viene de R1 ,  genera un entero del 0-7
-int sumaR1masSalidaLFSR()
+int sumaR1masSalidaLFSR(int x, int y)
+{
+    return (x + y); 
+}
+
+// Divide 
+vector<int> divToBinary(int x) 
+{
+    vector<int> binaryNumber(2);
+    //int num = x;
+    int i = 0;
+    while (x > 0)
+    {
+        binaryNumber[i] = x % 2;
+        x = x / 2;
+        i++;
+    }
+    return binaryNumber;
+}
+
+// Swap
+vector<int> swapNumber(vector<int> v)
+{
+    vector<int> resultado(v);
+    resultado[0] = v[1];
+    resultado[1] = v[0];
+    return resultado;
+}
+
+// Convierte el numero binario guardado en el vector a un numero entero
+int binaryToInteger(vector<int> v) {
+    string s;
+    s.resize(v.size());
+    for (int i = 0 ; i < v.size() ; i++) {
+        s[i] = v[i] + 48;
+    }
+    bitset<2> r (s);
+    return r.to_ulong();
+}
+
