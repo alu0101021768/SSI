@@ -44,11 +44,8 @@ int main() {
         T2[1] = R2[0] ^ R2[1];
         // Realizamos una xor entre T2 y el binario de 2 bits que se corresponde con un entero de 0-3
         primeraXor2bits = suma2bits(T2 , binario0to3);
-        primeraXor2bits[0] = T2[0] ^ binario0to3[0];
-        primeraXor2bits[1] = T2[1] ^ binario0to3[1];
         // Al resultado de esta última xor , se le realiza una xor con T1 que básicamente tiene el mismo contenido que R1
-        segundaXor2bits[0] = primeraXor2bits[0] ^ R1[0];
-        segundaXor2bits[1] = primeraXor2bits[1] ^ R1[1];
+        segundaXor2bits = suma2bits(primeraXor2bits , R1);
         // El resultado de esta segunda xor , va a pasar a ser el contenido de R1
         R1 = segundaXor2bits;
         // Pasamos a shiftear los registros LFSR y realimentarlos
