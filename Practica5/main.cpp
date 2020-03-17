@@ -10,9 +10,10 @@ int main() {
     vector<int> R1 {0 , 1};
     vector<int> R2;
     vector<int> T2;
-    vector<int> aux1;
+    vector<int> binario0to3;
+    vector<int> primeraXor2bits(2);
+    vector<int> segundaXor2bits(2);
     vector<int> secuencia_cifrante;
-    int c0t;
 
     //cout << binaryToInteger(R1) << endl;
 
@@ -21,14 +22,13 @@ int main() {
     cin >> iteraciones;
     secuencia_cifrante.resize(iteraciones);
 
-   // vector<int> v = divToBinary(5);
     for (int i = 0; i < iteraciones; i++)
     {
        // cout << v[i];
         // Swapeamos el contenido del registro R1 y el resultado de cambiar los bits , lo ponemos en R2
         R2 = swapNumber(R1);
         // Cogemos el segundo bit de R1 , al cual llamaremos c0t
-        c0t = R1[1];
+        int c0t = R1[1];
         // Generamos un bit de secuencia cifrante
         secuencia_cifrante[i] = generarSecuenciaCifrante(getLast(LFSR1), getLast(LFSR2), getLast(LFSR3), getLast(LFSR4), c0t);
         // Convertimos los 2 bits de R1 a decimal 
@@ -37,9 +37,25 @@ int main() {
         int suma0to4 = sumaSalidasLFSR(getLast(LFSR1), getLast(LFSR2), getLast(LFSR3), getLast(LFSR4));
         // Sumamos el entero de 0-4 obtenido con el decimal obtenido de pasar el registro R1 a decimal
         int suma0to7 = suma0to4 + R1toDecimal;
-        // Dividimos el resultado entero de 0-7 entre 2 
-        aux1 = divToBinary(suma0to7);
-       // T2[0] = 
+        // Dividimos el resultado entero de 0-7 entre 2 y luego lo pasamos a binario, quedándonos un entero de 0-3 , pero en binario , 2 bits
+        binario0to3 = divToBinary(suma0to7);
+        // Rellenamos T2 de manera que de la entrada , el primer bit permanece intacto , y el segundo es el primero de la entrada xor el segundo de la entrada
+        T2[0] = R2[0]; 
+        T2[1] = R2[0] ^ R2[1];
+        // Realizamos una xor entre T2 y el binario de 2 bits que se corresponde con un entero de 0-3
+        primeraXor2bits = suma2bits(T2 , binario0to3);
+        primeraXor2bits[0] = T2[0] ^ binario0to3[0];
+        primeraXor2bits[1] = T2[1] ^ binario0to3[1];
+        // Al resultado de esta última xor , se le realiza una xor con T1 que básicamente tiene el mismo contenido que R1
+        segundaXor2bits[0] = primeraXor2bits[0] ^ R1[0];
+        segundaXor2bits[1] = primeraXor2bits[1] ^ R1[1];
+        // El resultado de esta segunda xor , va a pasar a ser el contenido de R1
+        R1 = segundaXor2bits;
+        // Pasamos a shiftear los registros LFSR y realimentarlos
+        shiftLFSR1(LFSR1);
+        shiftLFSR2(LFSR2);
+        shiftLFSR3(LFSR3);
+        shiftLFSR4(LFSR4);
     }
     cout << endl;
 

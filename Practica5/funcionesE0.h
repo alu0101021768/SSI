@@ -59,8 +59,8 @@ void shiftLFSR4(vector<int> v)
 // Funciones suma de 2 bits : pos 0 con pos 0 y pos 1 con pos 1
 vector<int> suma2bits(vector<int> a, vector<int> b) {
     vector<int> r(2);
-    r[0] = a[0] + b[0];
-    r[1] = a[1] + b[1];
+    r[0] = a[0] ^ b[0];
+    r[1] = a[1] ^ b[1];
     return r;
 }
 
@@ -85,7 +85,6 @@ int sumaR1masSalidaLFSR(int x, int y)
 vector<int> divToBinary(int x) 
 {
     vector<int> binaryNumber(2);
-    //int num = x;
     int i = 0;
     while (x > 0)
     {
