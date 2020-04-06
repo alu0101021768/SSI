@@ -187,29 +187,13 @@ void keyExpansion(vector<int> key) {
 }
 ////////////////////////////////////////////////////////////////////
 
-
-// Write vector
-ostream &write(ostream &os, vector<int> v) {
-  os << "[";
-  for (int i = 0; i < 16; i++) {
-    os << hex << v[i];
-    if (i != 15) os << " ";
-  }
-  os << "]";
-}
-
-ostream& operator<<(ostream& os ,vector<int> v) {
-  write(os,v);
-  return os;
-}
-
 vector<int> cifradoAES_Rijndael(vector<int> clave , vector<int> bloque) {
   //////////////////////
   //  ETAPA INICIAL   //
   //////////////////////
   keyExpansion(clave);                                      // Generamos todas las subclaves
   addRoundKey(clave,bloque);                                // AddRoundKey entre clave y bloque de texto original
-  cout << "\nR0(SubClave = " << subkeys[0] << " ) = " << estado << "\n";  
+  //cout << "\nR0(SubClave = " << subkeys[0] << " ) = " << estado << "\n";  
 
   /////////////////////////////////////////
   //  ETAPA INTERMEDIA : 9 ITERACIONES   //
@@ -219,27 +203,17 @@ vector<int> cifradoAES_Rijndael(vector<int> clave , vector<int> bloque) {
     ShiftRow(estado);
     MixColumn(estado);
     addRoundKey(estado, subkeys[i]);
-    cout << "\nR" << i << "(SubClave = " << subkeys[i] << " ) = " << estado << "\n";
+    //cout << "\nR" << i << "(SubClave = " << subkeys[i] << " ) = " << estado << "\n";
   }
 
   //////////////////////
-  //  ETAPA FINAL   //
+  //  ETAPA FINAL     //
   //////////////////////
   SubBytes(estado);
   ShiftRow(estado);
   addRoundKey(subkeys[10], estado);
-  cout << "\nR10(SubClave = " << subkeys[10] << " ) = " << estado << "\n";
-  cout << "\nBloque de texto cifrado : " << estado << "\n";
+  //cout << "\nR10(SubClave = " << subkeys[10] << " ) = " << estado << "\n";
+  //cout << "\nBloque de texto cifrado : " << estado << "\n";
+  return estado;
 }
 
-int main() {
-  cout << "-------------------------------------------\n";
-  cout << "Práctica 7 - Algoritmo de Rjindael\n";
-  cout << "-------------------------------------------\n\n";
-  cout << "Clave: ";
-  cout << clave;                                            // Mostramos la clave 
-  cout << "\nBloque de texto original: ";
-  cout << bloque << "\n";                                   // Mostramos el bloque de texto original
-  cifradoAES_Rijndael(clave,bloque);
-  return 0;
-}
