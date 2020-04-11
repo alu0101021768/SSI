@@ -9,7 +9,7 @@
 const std::string alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Definimos el modulo
-const int modulo = 26;
+const int modulo = 27;
 
 // Busca en el alfabeto el valor de la letra
 int find_value(char caracter) 
