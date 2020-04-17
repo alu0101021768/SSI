@@ -1,4 +1,4 @@
 all:
-	g++ -std=c++11 main.cpp -o Rjindael
-clean:
+	g++ main.cpp -o  Rjindael
+clear:
 	rm Rjindael

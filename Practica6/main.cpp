@@ -5,8 +5,7 @@
 #include <vector>
 using namespace std;
 
-ostream &write_registers(ostream &os, bitset<8> byte1, bitset<8> byte2,
-                         bitset<8> byte_algoritmo, bitset<8> resultado) {
+ostream &write_registers(ostream &os, bitset<8> byte1, bitset<8> byte2,bitset<8> byte_algoritmo, bitset<8> resultado) {
   os << "Primer Byte: [";
   os << byte1;
   os << "]\n";
@@ -83,8 +82,8 @@ void multiplicacionAES(string primer_byte, string segundo_byte) {
   int A = convert(primer_byte);
   int B = convert(segundo_byte);
   bitset<8> byte1(A);
-  bitset<8> original1 = byte1;
   bitset<8> byte2(B);
+  bitset<8> original1 = byte1;
   bitset<8> original2 = byte2;
   bitset<8> byteAlgoritmo("00011011");
   int val = menorHamming(byte1, byte2);
@@ -94,13 +93,15 @@ void multiplicacionAES(string primer_byte, string segundo_byte) {
     for (int i = 0; i < resultado.size(); i++) {
       // Si el bit más significativo del de mayor hamming tiene un 1 antes del shifteo se le suma el byte del algoritmo
       if (byte1[byte1.size() - 1] == 1) {
+        // Si el elemento actual del byte2 es un 1 , se 
         if (byte2[i] == 1) {
           resultado = resultado ^ byte1;
         }
         shift(byte1);
         byte1 = byte1 ^ byteAlgoritmo;
 
-      } else {
+      }
+      else {
         if (byte2[i] == 1) {
           resultado = resultado ^ byte1;
         }

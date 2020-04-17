@@ -2,11 +2,11 @@
 #include <bitset>
 
 ostream &write(ostream &os, vector<int> v) {
-  os << "[ ";
-  for (int i = 0; i < v.size(); i++) {
-    os << hex << v[i] << " ";
-  }
-  os << "]\n";
+    os << "[ ";
+    for (int i = 0; i < v.size(); i++) {
+        os << hex << v[i] << " ";
+    }
+    os << "]\n";
 }
 
 ostream& operator<<(ostream&os , vector<int> v) {
@@ -38,24 +38,6 @@ vector<int> head(vector<int> data, int a) {
     for (int i = 0; i < a; i++) 
         aux[i] = data[i];
     return aux;
-}
-
-vector<int> tail(vector<int> data, int a) {
-    vector<int> aux(a);
-    int j = aux.size() - 1;
-    for (int i = data.size() - 1; i >= data.size() - a; i--) 
-        aux[j--] = data[i];
-    return aux;
-}
-
-vector<int> concatenate(vector<int> a, vector<int> b) {
-    vector<int> r(a.size() + b.size());
-    int x = (a.size() + b.size()) / 2;
-    for (int i = 0; i < a.size(); i++) {
-        r[i] = a[i];
-        r[i + x] = b[i];
-    }
-    return r;
 }
 
 void zeroes(vector<int>& v, int wanted_size) {
@@ -109,8 +91,6 @@ int main(void)  {
     vector<int> bloque2_distinct = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
     CBCoperation(clave,vInit,bloque1,bloque2);
     ECBoperation(clave,vInit,bloque1,bloque2_distinct);
-    //cout << head(clave,5) << endl;
-    //cout << tail(clave,5) << endl;
-    //cout << concatenate(clave,bloque) << endl;
+
     return 0;
 }
